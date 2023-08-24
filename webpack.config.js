@@ -1,34 +1,34 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  entry: "./src/index.js",
   output: {
-    filename: 'bundle.[contenthash].js',
-    path: path.resolve(__dirname, 'build'),
+    filename: "bundle.[contenthash].js",
+    path: path.resolve(__dirname, "build"),
     clean: true,
   },
   devServer: {
-    static: './build',
+    static: "./build",
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options:
-            {
-                presets: ["@babel/preset-react", "@babel/preset-env"]
-              }
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-react", "@babel/preset-env"],
+          },
         },
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
           },
         ],
       },
@@ -36,12 +36,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
     }),
   ],
   resolve: {
     alias: {
-      assets : path.resolve(__dirname, 'src/assets'), 
+      assets: path.resolve(__dirname, "src/assets"),
     },
   },
 };
